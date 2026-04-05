@@ -14,17 +14,16 @@ class Solution {
         ListNode dummy = new ListNode(-1, head);
         ListNode groupPrev = dummy;
 
-
         while(true){
             ListNode kth = this.findKth(groupPrev, k);
             if(kth == null){
                 break;
             }
-            ListNode nextGroupStart = kth.next;
-            ListNode prev = nextGroupStart;
+            ListNode nextStart = kth.next;
+            ListNode prev = nextStart;
             ListNode cur = groupPrev.next;
 
-            while(cur != nextGroupStart){
+            while(cur != nextStart){
                 ListNode temp = cur.next;
                 cur.next = prev;
                 prev = cur;
@@ -32,7 +31,7 @@ class Solution {
             }
             ListNode temp = groupPrev.next;
             groupPrev.next = kth;
-            groupPrev = temp; 
+            groupPrev = temp;
         }
         return dummy.next;
     }
